@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>폰테크 — 스마트 기기 자산화</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --glass:rgba(255,255,255,0.06);
+      --accent:#06b6d4; --accent-2:#7c3aed; --muted:#9aa4b2; --maxw:1200px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#071029 0%,#071725 60%); color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Header */
+    header{position:fixed;left:0;right:0;top:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:1100;background:linear-gradient(180deg, rgba(11,16,24,0.6), rgba(11,16,24,0.2));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#061021}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);font-weight:600;padding:8px 12px;border-radius:8px;transition:color .18s,background .18s}
+    nav a.active, nav a:hover{color:#e6f7fb;background:rgba(255,255,255,0.03)}
+
+    /* Hero */
+    .hero{height:100vh;padding-top:72px;display:grid;place-items:center}
+    .hero-inner{width:100%;max-width:var(--maxw);padding:48px;display:grid;grid-template-columns:1fr 440px;gap:40px;align-items:center}
+
+    .hero-copy h1{font-size:46px;line-height:1.02;margin-bottom:14px;font-weight:800}
+    .hero-copy p{color:var(--muted);font-size:16px;margin-bottom:28px}
+
+    /* Glass card form */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:22px;border-radius:14px;backdrop-filter:blur(8px)}
+    .lead-price{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .price-big{font-size:22px;font-weight:700;margin-bottom:6px}
+    .small-note{font-size:13px;color:var(--muted)}
+
+    form .row{display:flex;gap:10px;margin-bottom:10px}
+    input[type=text], input[type=tel], select{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;outline:none}
+    button[type=submit]{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041021;font-weight:700;cursor:pointer}
+
+    .hero-media{position:relative}
+    .device-mock{border-radius:20px;overflow:hidden;box-shadow:0 30px 60px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.03)}
+
+    /* Sections */
+    section{padding:80px 20px}
+    .container{max-width:var(--maxw);margin:0 auto}
+    .section-title{font-size:28px;font-weight:700;margin-bottom:18px}
+    .section-sub{color:var(--muted);margin-bottom:28px}
+
+    /* Features grid */
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .feature-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:16px;align-items:flex-start}
+    .feature-icon{width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,0.03);display:grid;place-items:center;font-size:22px}
+    .feature-content h4{font-weight:700;margin-bottom:6px}
+    .feature-content p{color:var(--muted);font-size:14px}
+
+    /* Price / flow */
+    .flow{display:flex;gap:18px;flex-wrap:wrap}
+    .step{flex:1;min-width:220px;background:linear-gradient(180deg,rgba(124,58,237,0.08),rgba(6,182,212,0.02));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .step h5{font-weight:800;color:#fff;margin-bottom:6px}
+    .step p{color:var(--muted);font-size:14px}
+
+    /* Reviews carousel (simple) */
+    .reviews{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+    .reviews-list{display:flex;flex-direction:column;gap:12px}
+    .review{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .review strong{display:block;margin-bottom:8px}
+    .review p{color:var(--muted);font-size:14px}
+
+    /* FAQ */
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .faq-item{background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+
+    /* CTA footer */
+    .cta{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:28px;border-radius:16px;background:linear-gradient(90deg,rgba(12,18,29,0.6),rgba(7,10,18,0.5));border:1px solid rgba(255,255,255,0.03)}
+    .cta h3{font-size:20px;margin-bottom:6px}
+    .cta p{color:var(--muted)}
+
+    footer{padding:36px 20px;text-align:center;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero-inner{grid-template-columns:1fr 380px;padding:28px 18px}
+      .grid.cols-3{grid-template-columns:repeat(2,1fr)}
+      .reviews{grid-template-columns:1fr}
+    }
+    @media (max-width:720px){
+      .hero-inner{grid-template-columns:1fr;padding:20px;gap:18px}
+      nav{display:none}
+      .grid.cols-3{grid-template-columns:1fr}
+      .faq{grid-template-columns:1fr}
+      header{padding:0 14px}
+    }
+
+    /* subtle animations */
+    .float-y{transform-origin:center center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="mark">PT</div>
+      <div>
+        <div style="font-weight:700">폰테크</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Smart Device Asset</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#home" class="active">홈</a>
+      <a href="#service">서비스</a>
+      <a href="#flow">진행절차</a>
+      <a href="#reviews">고객후기</a>
+      <a href="#faq">자주묻는질문</a>
+      <a href="#contact">상담신청</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="hero-inner container">
+        <div class="hero-copy" data-aos="fade-right">
+          <h1>휴대폰이 자산이 됩니다.<br>빠르고 안전한 폰테크 서비스</h1>
+          <p>기기 매입·할부정리·당일지급·비대면 상담까지. 정식 등록·안전한 절차로 진행합니다.</p>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+            <a class="btn-ghost" href="#service" style="padding:10px 16px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#e6f7fb;font-weight:700">서비스 보기</a>
+            <a class="btn-primary" href="#contact" style="padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041021;font-weight:700">지금 상담신청</a>
+          </div>
+
+          <div style="margin-top:22px;color:var(--muted);font-size:13px">공식 등록업체 · 개인정보 암호화 · 방문/비대면 모두 지원</div>
+        </div>
+
+        <div class="hero-media" data-aos="fade-left">
+          <div class="card">
+            <div class="lead-price">간편상담</div>
+            <div class="price-big">상담 예약 폼</div>
+            <form id="lead-form" style="margin-top:8px">
+              <div class="row"><input type="text" name="name" placeholder="이름" required /></div>
+              <div class="row"><input type="tel" name="phone" placeholder="전화번호 (예: 010-1234-5678)" required /></div>
+              <div class="row">
+                <select name="method">
+                  <option value="call">전화상담 요청</option>
+                  <option value="visit">방문 상담</option>
+                  <option value="nonface">비대면</option>
+                </select>
+                <button type="submit">상담신청</button>
+              </div>
+              <div class="small-note">신청 즉시 알림이 전송됩니다. 개인정보는 안전하게 보관됩니다.</div>
+            </form>
+          </div>
+
+          <div style="margin-top:18px" class="float-y" id="deviceMock">
+            <div class="device-mock">
+              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80" alt="device" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE -->
+    <section id="service">
+      <div class="container">
+        <h2 class="section-title">서비스 핵심</h2>
+        <div class="section-sub">기기 매입부터 데이터 삭제, 당일지급까지. 고객 편의를 최우선으로 설계했습니다.</div>
+
+        <div class="grid cols-3" data-aos="fade-up" data-aos-delay="80">
+          <div class="feature-card">
+            <div class="feature-icon">💸</div>
+            <div class="feature-content">
+              <h4>실시간 시세 조회</h4>
+              <p>모델명 입력만으로 현재 시장가를 즉시 확인합니다. 투명한 매입가 제시.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-content">
+              <h4>데이터 완전 삭제</h4>
+              <p>국내 기준에 맞춘 안전한 초기화 절차로 개인정보를 완전히 삭제합니다.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-content">
+              <h4>당일지급 옵션</h4>
+              <p>심사 승인 즉시 계좌이체 또는 현금 지급이 가능합니다.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <div class="feature-content">
+              <h4>출장수거/방문수거</h4>
+              <p>원하시면 전문가가 방문하여 직접 수거합니다. 안전한 배송 옵션 제공.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🕒</div>
+            <div class="feature-content">
+              <h4>빠른 상담·24시간 접수</h4>
+              <p>웹, 전화, 카카오톡으로 신속한 상담을 받을 수 있습니다.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">✅</div>
+            <div class="feature-content">
+              <h4>정식 업체 보장</h4>
+              <p>사업자 등록 및 관련 인증 보유. 신뢰 가능한 파트너 네트워크 운영.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOW -->
+    <section id="flow">
+      <div class="container">
+        <h2 class="section-title">진행 절차</h2>
+        <div class="section-sub">간단 4단계. 모든 과정은 투명하게 안내됩니다.</div>
+
+        <div class="flow" data-aos="zoom-in" data-aos-delay="80">
+          <div class="step">
+            <h5>1. 문의 및 접수</h5>
+            <p>이름, 연락처, 기기 정보를 접수합니다.</p>
+          </div>
+          <div class="step">
+            <h5>2. 시세 안내</h5>
+            <p>기기 상태에 따른 예상 매입가를 안내합니다.</p>
+          </div>
+          <div class="step">
+            <h5>3. 방문 또는 비대면 평가</h5>
+            <p>원하시는 방식으로 평가를 진행합니다.</p>
+          </div>
+          <div class="step">
+            <h5>4. 지급 및 완료</h5>
+            <p>승인 즉시 지급 처리 후 완료됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="container">
+        <h2 class="section-title">고객 후기</h2>
+        <div class="reviews">
+          <div class="reviews-list" data-aos="fade-up">
+            <div class="review">
+              <strong>신속한 처리</strong>
+              <p>"모델명 입력 후 바로 매입가 안내를 받아서 당일 처리까지 빠르게 끝냈습니다." — 홍길동</p>
+            </div>
+            <div class="review">
+              <strong>안전한 데이터 삭제</strong>
+              <p>"초기화 후에도 걱정했는데 완료보고서까지 주셔서 안심했습니다." — 김영희</p>
+            </div>
+            <div class="review">
+              <strong>출장 수거 유용</strong>
+              <p>"직접 방문하기 어려웠는데 출장수거로 편하게 마무리했어요." — 박준호</p>
+            </div>
+          </div>
+
+          <aside data-aos="fade-left">
+            <div class="card" style="padding:20px">
+              <div style="font-size:13px;color:var(--muted)">실시간 상담</div>
+              <div style="font-weight:800;font-size:18px;margin:8px 0">빠른 상담이 필요하신가요?</div>
+              <form id="lead-form-2">
+                <div style="display:flex;gap:8px;margin-bottom:8px"><input type="text" name="name2" placeholder="이름" required /><input type="tel" name="phone2" placeholder="연락처" required /></div>
+                <button type="submit">상담 신청</button>
+                <div style="font-size:12px;color:var(--muted);margin-top:8px">24시간 내에 상담원이 연락 드립니다.</div>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <div class="faq" data-aos="fade-up">
+          <div class="faq-item"><strong>Q. 데이터는 어떻게 삭제하나요?</strong><p class="section-sub">A. 공인된 초기화 절차로 OS 수준에서 완전 삭제합니다. 요청 시 삭제보고서 제공.</p></div>
+          <div class="faq-item"><strong>Q. 당일 지급이 가능한가요?</strong><p class="section-sub">A. 심사 기준 통과 시 당일 지급 가능합니다. 단, 인증 및 계좌 확인 절차 필요.</p></div>
+          <div class="faq-item"><strong>Q. 출장비용이 있나요?</strong><p class="section-sub">A. 일정 금액 이상 거래 시 출장비 무료 또는 할인 혜택을 제공합니다.</p></div>
+          <div class="faq-item"><strong>Q. 비대면 진행은 안전한가요?</strong><p class="section-sub">A. 화상 또는 사진 기반 평가로도 충분한 절차를 마련해 안전하게 진행합니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact">
+      <div class="container">
+        <div class="cta" data-aos="fade-up">
+          <div>
+            <h3>지금 상담 신청하세요</h3>
+            <p>빠른 접수. 안전한 절차. 당일 지급 옵션 제공.</p>
+          </div>
+          <form id="contact-form" style="display:flex;gap:8px;align-items:center">
+            <input type="text" name="name3" placeholder="이름" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+            <input type="tel" name="phone3" placeholder="연락처" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+            <button type="submit" style="padding:10px 14px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));font-weight:800;color:#041021">상담신청</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© 2025 폰테크. 사업자등록번호: 000-00-00000</div>
+        <div style="color:var(--muted)">대표전화: 010-1234-5678 · 이메일: support@phonetech.local</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: AOS + GSAP -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    AOS.init({duration:700,once:true,easing:'cubic-bezier(.2,.8,.2,1)'});
+
+    // Header link activation on scroll
+    const navLinks = document.querySelectorAll('header nav a');
+    const sections = ['home','service','flow','reviews','faq','contact'];
+    const getOffset = el => el ? el.offsetTop - 90 : 0;
+
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY;
+      sections.forEach(id=>{
+        const s = document.getElementById(id);
+        if(!s) return;
+        const top = getOffset(s);
+        const bottom = top + s.offsetHeight;
+        const link = document.querySelector(`header nav a[href=\"#${id}\"]`);
+        if(y >= top && y < bottom){navLinks.forEach(n=>n.classList.remove('active')); if(link) link.classList.add('active')}
+      })
+    })
+
+    // GSAP subtle float for device mock
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('#deviceMock',{y:-18,repeat:-1,yoyo:true,ease:'sine.inOut',duration:3});
+
+    // Parallax on hero image card using ScrollTrigger
+    gsap.to('.hero-copy',{yPercent:6, ease:'none', scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:0.8}})
+    gsap.to('.hero-media',{yPercent:-6, ease:'none', scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:0.8}})
+
+    // Simple form handlers (placeholder for real API)
+    function sendLead(data){
+      console.log('lead',data);
+      return Promise.resolve({ok:true});
+    }
+
+    document.getElementById('lead-form').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const f = new FormData(e.target); const name=f.get('name'), phone=f.get('phone');
+      if(!name||!phone){alert('이름과 연락처를 입력해주세요');return}
+      e.target.querySelector('button').disabled=true;
+      await sendLead(Object.fromEntries(f));
+      alert(name+'님, 상담 신청이 완료되었습니다.');
+      e.target.reset();
+      e.target.querySelector('button').disabled=false;
+    })
+
+    document.getElementById('lead-form-2').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const f=new FormData(e.target); const name=f.get('name2'), phone=f.get('phone2');
+      if(!name||!phone){alert('이름과 연락처를 입력해주세요');return}
+      await sendLead(Object.fromEntries(f));
+      alert('상담 접수 완료. 24시간 내 연락 드립니다.');
+      e.target.reset();
+    })
+
+    document.getElementById('contact-form').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const f=new FormData(e.target); const name=f.get('name3'), phone=f.get('phone3');
+      if(!name||!phone){alert('이름과 연락처를 입력해주세요');return}
+      await sendLead(Object.fromEntries(f));
+      alert('상담 접수 완료. 곧 연락 드립니다.');
+      e.target.reset();
+    })
+
+    // Accessibility: enable nav links to scroll to section with offset
+    document.querySelectorAll('header nav a').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').replace('#','');
+        const el = document.getElementById(id);
+        if(!el) return;
+        const top = el.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({top,behavior:'smooth'});
+      })
+    })
+  </script>
+</body>
+</html>
