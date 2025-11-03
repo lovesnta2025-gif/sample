@@ -152,11 +152,6 @@
             color: #FFFFFF;
             opacity: 0.85;
         }
-        
-        /* 모바일 메뉴 토글 버튼 (데스크톱에서 숨김) */
-        .mobile-menu-toggle {
-            display: none;
-        }
 
         /* --- 3. Hero Section --- */
         #hero {
@@ -640,17 +635,20 @@
             transform: translateY(0);
         }
 
-        /* --- 11. Responsive Design (미디어 쿼리) --- */
+        /* --- 반응형 미디어 쿼리 --- */
         
-        /* 태블릿 (768px ~ 1024px) */
+        /* 태블릿 (1024px 이하) */
         @media (max-width: 1024px) {
             .section-title {
                 font-size: 2.5rem;
             }
             
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
             .service-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
             }
             
             .support-grid {
@@ -666,93 +664,21 @@
                 border-right: none;
                 border-bottom: 1px solid var(--color-border);
             }
-            
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
         
-        /* 모바일 (최대 768px) */
+        /* 모바일 (768px 이하) */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 16px;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 15px;
-            }
-            
-            .section-subtitle {
-                font-size: 1rem;
-                margin-bottom: 40px;
-            }
-            
-            /* 네비게이션 */
+            /* 헤더 및 네비게이션 */
             .nav-container {
                 height: 60px;
-                flex-wrap: wrap;
             }
             
             .logo {
                 font-size: 1.3rem;
             }
             
-            /* 모바일 메뉴 토글 버튼 */
-            .mobile-menu-toggle {
-                display: block;
-                background: none;
-                border: none;
-                color: var(--color-dark);
-                cursor: pointer;
-                padding: 8px;
-                font-size: 1.5rem;
-            }
-            
-            .mobile-menu-toggle i {
-                width: 24px;
-                height: 24px;
-            }
-            
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out;
-            }
-            
-            nav.active {
-                max-height: 400px;
-            }
-            
             nav ul {
-                flex-direction: column;
-                padding: 20px;
-                gap: 0;
-            }
-            
-            nav ul li {
-                border-bottom: 1px solid var(--color-border);
-            }
-            
-            nav ul li:last-child {
-                border-bottom: none;
-            }
-            
-            nav a {
-                display: block;
-                padding: 15px 0;
-                font-size: 1.1rem;
+                display: none; /* 모바일에서는 네비게이션 숨김 (햄버거 메뉴로 대체 가능) */
             }
             
             .nav-cta {
@@ -760,29 +686,48 @@
                 padding: 8px 16px;
             }
             
-            /* Hero 섹션 */
+            /* 헤로 섹션 */
             #hero {
                 padding-top: 60px;
                 height: auto;
-                min-height: 100vh;
+                min-height: 90vh;
             }
             
             .hero-title {
                 font-size: 2.5rem;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-bottom: 30px;
             }
             
             .cta-button {
                 font-size: 1rem;
-                padding: 14px 28px;
+                padding: 16px 28px;
             }
             
-            /* Service 그리드 */
+            /* 섹션 전체 */
+            section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 16px;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            /* 서비스 그리드 */
             .service-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -796,48 +741,57 @@
                 font-size: 1.5rem;
             }
             
-            /* Process Timeline */
+            /* 프로세스 타임라인 */
             .process-timeline::after {
-                left: 30px; /* 모바일에서 왼쪽으로 이동 */
+                left: 30px; /* 중앙이 아닌 왼쪽으로 */
             }
             
             .timeline-item {
                 width: 100%;
                 left: 0 !important;
-                padding-left: 80px !important;
+                padding-left: 80px !important; /* 아이콘 공간 확보 */
                 padding-right: 0 !important;
                 text-align: left !important;
             }
             
-            .timeline-item.left .timeline-icon,
-            .timeline-item.right .timeline-icon {
+            .timeline-icon {
                 left: 0 !important;
                 right: auto !important;
             }
             
-            /* Pricing 섹션 */
-            .pricing-form,
-            .pricing-result {
-                padding: 30px 20px;
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .timeline-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            /* 가격 조회 */
+            .pricing-box {
+                border-radius: 16px;
+            }
+            
+            .pricing-form, .pricing-result {
+                padding: 40px 20px;
             }
             
             .pricing-form h3 {
                 font-size: 1.5rem;
+                margin-bottom: 20px;
             }
             
             .pricing-result .price-display {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
-            /* Reviews 섹션 */
+            /* 후기 캐러셀 */
             .review-card {
                 flex: 0 0 280px;
-                padding: 20px;
             }
             
-            /* Support 섹션 */
+            /* 지원 섹션 */
             .support-grid {
-                grid-template-columns: 1fr;
                 gap: 30px;
             }
             
@@ -847,30 +801,44 @@
             }
             
             .contact-box {
-                padding: 25px 20px;
+                padding: 25px;
             }
             
-            /* Footer */
+            /* 푸터 */
             footer {
-                padding: 50px 0;
+                padding: 60px 0;
             }
             
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 40px;
+            }
+            
+            .footer-about {
+                text-align: center;
             }
             
             .footer-about p {
                 max-width: 100%;
+                margin: 0 auto 20px;
+            }
+            
+            .footer-socials {
+                justify-content: center;
+            }
+            
+            .footer-links {
+                text-align: center;
+            }
+            
+            .footer-legal {
+                margin-top: 30px;
+                padding-top: 30px;
             }
         }
         
-        /* 작은 모바일 (최대 480px) */
+        /* 작은 모바일 (480px 이하) */
         @media (max-width: 480px) {
-            .section-title {
-                font-size: 1.75rem;
-            }
-            
             .hero-title {
                 font-size: 2rem;
             }
@@ -879,37 +847,52 @@
                 font-size: 1rem;
             }
             
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
             .service-item {
-                padding: 25px 16px;
+                padding: 25px 15px;
             }
             
             .service-item h3 {
                 font-size: 1.3rem;
             }
             
-            .timeline-content {
-                padding: 20px;
+            .service-item p {
+                font-size: 0.95rem;
+            }
+            
+            .timeline-content span {
+                font-size: 0.9rem;
             }
             
             .timeline-content h3 {
-                font-size: 1.25rem;
+                font-size: 1.2rem;
             }
             
-            .pricing-form,
-            .pricing-result {
-                padding: 25px 16px;
+            .timeline-content p {
+                font-size: 0.95rem;
             }
             
             .pricing-result .price-display {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .review-card {
                 flex: 0 0 260px;
-                padding: 16px;
+                padding: 25px;
             }
             
             .review-card p {
+                font-size: 1rem;
+            }
+            
+            .faq-question {
                 font-size: 1rem;
             }
             
@@ -921,10 +904,6 @@
                 font-size: 1rem;
                 padding: 14px;
             }
-            
-            .footer-about .logo {
-                font-size: 1.5rem;
-            }
         }
 
     </style>
@@ -934,10 +913,7 @@
     <header id="header">
         <div class="container nav-container">
             <a href="#hero" class="logo">Premium<span>Tech</span></a>
-            <button class="mobile-menu-toggle" aria-label="메뉴 열기">
-                <i data-feather="menu"></i>
-            </button>
-            <nav id="nav-menu">
+            <nav>
                 <ul>
                     <li><a href="#service">서비스 안내</a></li>
                     <li><a href="#process">이용 절차</a></li>
@@ -1245,35 +1221,7 @@
                 console.error("Feather Icons 로드 실패:", e);
             }
 
-            // --- 2. 모바일 메뉴 토글 ---
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            
-            if (mobileMenuToggle && navMenu) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                    // 아이콘 변경 (메뉴 <-> X)
-                    const icon = mobileMenuToggle.querySelector('i');
-                    if (navMenu.classList.contains('active')) {
-                        icon.setAttribute('data-feather', 'x');
-                    } else {
-                        icon.setAttribute('data-feather', 'menu');
-                    }
-                    feather.replace(); // 아이콘 다시 렌더링
-                });
-                
-                // 메뉴 링크 클릭 시 메뉴 닫기
-                navMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        navMenu.classList.remove('active');
-                        const icon = mobileMenuToggle.querySelector('i');
-                        icon.setAttribute('data-feather', 'menu');
-                        feather.replace();
-                    });
-                });
-            }
-
-            // --- 3. 다이나믹 헤더 (스크롤) ---
+            // --- 2. 다이나믹 헤더 (스크롤) ---
             const header = document.getElementById("header");
             window.addEventListener("scroll", function() {
                 if (window.scrollY > 50) {
@@ -1283,7 +1231,7 @@
                 }
             });
 
-            // --- 4. 네비게이션 부드러운 스크롤 ---
+            // --- 3. 네비게이션 부드러운 스크롤 ---
             // (html 태그에 'scroll-behavior: smooth;'를 썼지만 JS로도 구현 가능)
             document.querySelectorAll('nav a[href^="#"], a.logo[href^="#"], .cta-button[href^="#"], .nav-cta[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -1302,7 +1250,7 @@
                 });
             });
 
-            // --- 5. 스크롤 애니메이션 (IntersectionObserver) ---
+            // --- 4. 스크롤 애니메이션 (IntersectionObserver) ---
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -1323,7 +1271,7 @@
                 observer.observe(el);
             });
             
-            // --- 6. FAQ 아코디언 ---
+            // --- 5. FAQ 아코디언 ---
             const faqItems = document.querySelectorAll('.faq-item');
             
             // 초기 활성 아이템 설정 (JS로 max-height 설정)
@@ -1354,7 +1302,7 @@
                 });
             });
 
-            // --- 7. 인터랙티브 시세 조회 ---
+            // --- 6. 인터랙티브 시세 조회 ---
             const brandSelect = document.getElementById('brand');
             const modelSelect = document.getElementById('model');
             const conditionSelect = document.getElementById('condition');
