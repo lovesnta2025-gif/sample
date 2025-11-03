@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제로폰 폰테크 | 당신의 스마트폰으로 급한 자금을 해결하세요</title>
+    <!-- 구글 폰트: Noto Sans KR (산세리프), Noto Serif KR (세리프) 고급스러운 느낌을 위해 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 아이콘 (무료 버전) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS 초기화 및 기본 스타일 */
+        :root {
+            --primary-color: #007bff; /* 메인 브랜드 컬러 (청량감, 신뢰) */
+            --secondary-color: #f8f9fa; /* 밝은 배경 */
+            --accent-color: #ffc107; /* 강조색 (골드, 역동적) */
+            --dark-color: #343a40; /* 어두운 텍스트 */
+            --text-light-color: #6c757d;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --border-radius: 10px;
+            --font-serif: 'Noto Serif KR', serif;
+            --font-sans: 'Noto Sans KR', sans-serif;
+            --section-padding: 80px; /* 섹션 공통 패딩 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            color: var(--dark-color);
+            background-color: #ffffff; /* 순백색 배경 */
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* 가로 스크롤 방지 */
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            margin-bottom: 0.8em;
+            color: var(--dark-color);
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5em;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .btn {
+            display: inline-flex; /* 아이콘과 텍스트 정렬 */
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 14px 30px;
+            border-radius: 50px; /* 둥근 버튼 */
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: translateX(5px);
+        }
+
+        .btn-kakao {
+            background-color: #FEE500; /* 카카오 노란색 */
+            color: #3C1E1E;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-kakao i {
+            margin-right: 8px;
+            margin-left: 0;
+            font-size: 1.2em;
+        }
+
+        .btn-kakao:hover {
+            background-color: #FEE100;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 애니메이션 효과 정의 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-30deg) scale(0.8); }
+            to { opacity: 1; transform: rotate(0deg) scale(1); }
+        }
+
+        @keyframes floatEffect {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 헤더 스타일 */
+        .header {
+            background-color: #ffffff;
+            box-shadow: var(--box-shadow);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--dark-color);
+            transition: color 0.3s ease;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-item a {
+            color: var(--dark-color);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-item a:hover::after {
+            width: 100%;
+        }
+
+        /* 모바일 햄버거 메뉴 */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .hamburger-menu span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--dark-color);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* 메인 슬라이더 (데모용, 실제론 JS 라이브러리 권장) */
+        .main-slider {
+            position: relative;
+            height: 600px; /* 높이 조절 */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?smartphone,money,finance,future'); /* 기본 배경 및 오버레이 */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+
+        .main-slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 텍스트 가독성을 위한 어두운 오버레이 */
+            z-index: 0;
+        }
+
+        .slider-content {
+            z-index: 1;
+            max-width: 900px;
+            padding: 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInUp 1s ease-out forwards 0.5s;
+        }
+
+        .slider-content h1 {
+            font-size: 4.2em;
+            margin-bottom: 0.2em;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-content p {
+            font-size: 1.4em;
+            margin-bottom: 2em;
+            color: #eee;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 상담 신청 폼 */
+        .consultation-form-section {
+            background-color: var(--secondary-color);
+            padding: var(--section-padding) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consultation-form-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .consultation-form-wrapper {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 650px;
+            margin: 0 auto;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: zoomIn 0.8s ease-out forwards 0.3s;
+        }
+
+        .consultation-form-wrapper h3 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-family: var(--font-serif);
+            font-weight: 600;
+        }
+
+        .consultation-form-wrapper p {
+            margin-bottom: 30px;
+            color: var(--text-light-color);
+            font-size: 1.05em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 1.05em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(var(--primary-color), 0.2);
+            outline: none;
+        }
+
+        /* 섹션 공통 스타일 - Intersection Observer와 연동 */
+        .section-padding {
+            padding: var(--section-padding) 0;
+        }
+
+        .animated-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animated-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: var(--animation-delay, 0s); /* 개별 요소 딜레이 */
+        }
+
+        .animated-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 소개/핵심 가치 섹션 */
+        .intro-section .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-section .text-content h3 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.6em;
+            line-height: 1.4;
+        }
+
+        .intro-section .text-content p {
+            font-size: 1.15em;
+            color: var(--text-light-color);
+            margin-bottom: 1.8em;
+            line-height: 1.8;
+        }
+
+        .intro-section .image-content {
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            animation: floatEffect 5s ease-in-out infinite alternate;
+        }
+
+        /* 폰테크 필요성 섹션 */
+        .need-phonetech-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/1600x900/?loan,urgent,money') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Parallax */
+            color: #fff;
+            text-align: center;
+        }
+
+        .need-phonetech-section h2 {
+            color: #fff;
+        }
+        .need-phonetech-section h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .need-phonetech-section .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px); /* 유리모피즘 */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            z-index: 0;
+        }
+
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card i {
+            font-size: 3.5em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover i {
+            transform: rotateY(15deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.7em;
+            color: #fff;
+            font-family: var(--font-serif);
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #ccc;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        /* 진행 절차 섹션 */
+        .process-section {
+            background-color: #f7fcfd; /* 밝은 청록색 계열 */
+        }
+
+        .process-section .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            padding: 40px 25px;
+            border-radius: var(--border-radius);
+            transition: all 0.4s ease;
+            background-color: #fff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: zoomIn 0.8s ease-out forwards;
+        }
+
+        .process-step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 30px rgba(var(--primary-color), 0.15);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .process-step .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary-color), #4CAF50); /* 그라디언트 아이콘 배경 */
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            margin: 0 auto 30px;
+            box-shadow: 0 5px 15px rgba(var(--primary-color), 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .icon-wrapper {
+            transform: rotateY(180deg);
+            background: linear-gradient(45deg, var(--accent-color), #FF7F50);
+        }
+
+        .process-step h4 {
+            font-size: 1.6em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: var(--font-serif);
+            font-weight: 600;
+        }
+
+        .process-step p {
+            font-size: 1.05em;
+            color: var(--text-light-color);
+            line-height: 1.7;
+        }
+
+        /* 안전성 및 신뢰 섹션 */
+        .security-section {
+            background-color: #e0f7fa; /* 밝은 청색 */
+        }
+        .security-section h2 {
+             color: var(--dark-color);
+        }
+        .security-section h2::after {
+            background-color: var(--primary-color);
+        }
+
+        .security-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .security-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .security-text h3 {
+            font-size: 2.2em;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .security-text ul {
+            list-style: none;
+        }
+
+        .security-text ul li {
+            font-size: 1.1em;
+            color: var(--text-light-color);
+            margin-bottom: 15px;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 0.8s ease-out forwards;
+            animation-delay: var(--animation-delay, 0s);
+        }
+
+        .security-text ul li i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.5em;
+            line-height: 1.6;
+            flex-shrink: 0;
+        }
+
+        /* 매입 가능 폰 섹션 */
+        .supported-devices-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1600x900/?smartphone,new,old,collection') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Parallax */
+            color: #fff;
+            text-align: center;
+        }
+
+        .supported-devices-section h2 {
+            color: #fff;
+        }
+        .supported-devices-section h2::after {
+            background-color: var(--primary-color);
+        }
+
+        .device-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .device-item {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: zoomIn 0.8s ease-out forwards;
+            animation-delay: var(--animation-delay, 0s);
+        }
+
+        .device-item i {
+            font-size: 5em;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .device-item:hover i {
+            transform: translateY(-10px) scale(1.1);
+        }
+
+        .device-item h3 {
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        /* FAQ 섹션 */
+        .faq-section .accordion {
+            max-width: 900px;
+            margin: 50px auto 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+            animation: slideInUp 0.7s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            transition-delay: var(--animation-delay, 0s);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 28px;
+            font-size: 1.2em;
+            font-weight: 500;
+            cursor: pointer;
+            background-color: #fcfcfc;
+            transition: background-color 0.3s ease;
+            color: var(--dark-color);
+            font-family: var(--font-serif);
+        }
+
+        .accordion-header:hover {
+            background-color: #f0f0f0;
+            color: var(--primary-color);
+        }
+
+        .accordion-header .icon {
+            font-size: 1.2em;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 28px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: #ffffff;
+            color: var(--text-light-color);
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        .accordion-content.active {
+            max-height: 300px; /* 늘어날 내용에 맞게 조절 */
+            padding: 20px 28px 30px;
+        }
+
+        /* 고객 후기 섹션 (데모용, 실제론 슬라이드 기능 등 추가 가능) */
+        .reviews-section {
+            background-color: #fefcfb; /* 밝은 크림색 */
+        }
+        .reviews-section h2 {
+            color: var(--dark-color);
+        }
+        .reviews-section h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .review-card {
+            background-color: #fff;
+            padding: 35px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: rotateY(15deg) scale(0.9);
+            opacity: 0;
+            animation: rotateIn 0.9s ease-out forwards;
+            animation-delay: var(--animation-delay, 0s);
+        }
+
+        .review-card:hover {
+            transform: rotateY(0deg) scale(1.02) translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .review-card .quote-icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .review-card p {
+            font-style: italic;
+            margin-bottom: 25px;
+            color: var(--dark-color);
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .reviewer-info {
+            font-weight: 700;
+            color: var(--dark-color);
+            font-size: 1.1em;
+        }
+        .reviewer-info span {
+            font-weight: 400;
+            color: var(--text-light-color);
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* 푸터 스타일 */
+        .footer {
+            background-color: var(--dark-color);
+            color: #e0e0e0;
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .footer .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 280px; /* 최소 너비 */
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-section h4 {
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+
+        .footer-section p, .footer-section ul {
+            color: #cccccc;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-section ul li i {
+            margin-right: 12px;
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+
+        .footer-section ul li a {
+            color: #cccccc;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.8em;
+            margin-right: 18px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:last-child {
+            margin-right: 0;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .footer .copywrite {
+            border-top: 1px solid #555;
+            padding-top: 30px;
+            margin-top: 30px;
+            color: #aaaaaa;
+            font-size: 0.9em;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 992px) {
+            .navbar .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; /* 헤더 높이에 맞게 조절 */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: var(--box-shadow);
+                padding: 20px 0;
+                transition: max-height 0.4s ease-out;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            .navbar .nav-menu.active {
+                max-height: 400px; /* 메뉴 항목 수에 따라 조절 */
+            }
+
+            .nav-menu .nav-item {
+                text-align: center;
+                margin: 12px 0;
+            }
+            .nav-menu .nav-item a {
+                font-size: 1.1em;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+            .hamburger-menu.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger-menu.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            h2 {
+                font-size: 2.2em;
+            }
+            .main-slider {
+                height: 500px;
+            }
+            .slider-content h1 {
+                font-size: 3.2em;
+            }
+            .slider-content p {
+                font-size: 1.2em;
+            }
+
+            .intro-section .content-grid,
+            .security-content {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-section .image-content,
+            .security-image {
+                order: -1; /* 모바일에서 이미지가 먼저 오도록 */
+            }
+
+            .feature-grid,
+            .process-grid,
+            .reviews-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .footer .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-section {
+                text-align: center;
+                margin-bottom: 35px;
+            }
+            .footer-section h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .footer-section ul li {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 1.2em;
+            }
+            h2::after {
+                width: 70px;
+                bottom: -10px;
+            }
+            .main-slider {
+                height: 450px;
+            }
+            .slider-content h1 {
+                font-size: 2.5em;
+            }
+            .slider-content p {
+                font-size: 1em;
+            }
+            .consultation-form-wrapper {
+                padding: 40px;
+            }
+            .consultation-form-wrapper h3 {
+                font-size: 1.8em;
+            }
+            .section-padding {
+                padding: 60px 0;
+            }
+            .intro-section .text-content h3, .security-text h3 {
+                font-size: 1.8em;
+            }
+            .faq-section .accordion-header {
+                font-size: 1.05em;
+                padding: 18px 20px;
+            }
+            .accordion-content.active {
+                padding: 15px 20px;
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr; /* 모바일에서는 1열 */
+            }
+            .device-item i {
+                font-size: 4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.6em;
+            }
+            .main-slider {
+                height: 380px;
+            }
+            .slider-content h1 {
+                font-size: 2em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            .consultation-form-wrapper {
+                padding: 30px;
+            }
+            .intro-section .image-content {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">제로폰<span>폰테크</span></a>
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#intro">제로폰은?</a></li>
+                    <li class="nav-item"><a href="#need-phonetech">왜 폰테크인가?</a></li>
+                    <li class="nav-item"><a href="#process">이용 절차</a></li>
+                    <li class="nav-item"><a href="#security">안전 & 신뢰</a></li>
+                    <li class="nav-item"><a href="#supported-devices">가능한 기기</a></li>
+                    <li class="nav-item"><a href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a href="#reviews">고객 후기</a></li>
+                    <li class="nav-item"><a href="#contact-footer">상담 신청</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 메인 슬라이드 섹션 -->
+        <section class="main-slider">
+            <div class="main-slider-overlay"></div>
+            <div class="slider-content">
+                <h1>급한 자금, 스마트폰으로 빠르고 안전하게! <br> <span style="color: var(--accent-color);">제로폰 폰테크</span>가 해결합니다.</h1>
+                <p>복잡한 서류, 신용 조회 없이 <span style="color: var(--accent-color); font-weight: 600;">최대 한도로, 가장 빠른 시간 내</span> 현금을 확보하세요.<br>지금 바로 현금 유동성 확보의 스마트한 선택을 경험하세요.</p>
+                <a href="#contact" class="btn">빠른 1:1 비공개 상담 신청 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- 방문자 정보 입력 및 카카오 상담 신청 섹션 -->
+        <section id="contact" class="consultation-form-section animated-section">
+            <div class="container">
+                <div class="consultation-form-wrapper animated-element" style="--animation-delay: 0.2s;">
+                    <i class="fas fa-headset" style="font-size: 3em; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h3>비대면 안심 상담 신청</h3>
+                    <p>개인정보는 암호화되어 철저하게 보호됩니다. <br>전문 상담사가 빠르고 친절하게 안내해 드릴게요.</p>
+                    <form id="contactForm">
+                        <div class="form-group animated-element" style="--animation-delay: 0.4s;">
+                            <label for="name">이름</label>
+                            <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required>
+                        </div>
+                        <div class="form-group animated-element" style="--animation-delay: 0.6s;">
+                            <label for="phone">연락처</label>
+                            <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호 (- 없이 입력)" pattern="[0-9]{10,11}" title="숫자 10~11자리를 입력해주세요" required>
+                        </div>
+                        <button type="submit" class="btn btn-kakao animated-element" style="width: 100%; margin-top: 20px; --animation-delay: 0.8s;">
+                            <i class="fas fa-comment"></i> 카카오 상담 신청하기
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 제로폰 소개 섹션 (Why Zerophone?) -->
+        <section id="intro" class="intro-section section-padding animated-section">
+            <div class="container content-grid">
+                <div class="text-content animated-element" style="--animation-delay: 0.2s;">
+                    <h3><span style="color: var(--primary-color);">제로폰 폰테크</span>, 단순한 매입 그 이상의 가치</h3>
+                    <p>제로폰은 단순히 스마트폰을 매입하여 현금을 드리는 것을 넘어, 고객님의 긴급한 금융 문제를 해결하고 새로운 가능성을 열어드리는 <span style="font-weight: 700;">혁신적인 금융 솔루션</span>입니다.</p>
+                    <p>바쁜 현대 사회에서 예측 불가능한 상황은 언제든 발생할 수 있습니다. 은행 대출의 복잡한 절차와 까다로운 조건, 그리고 신용도 하락에 대한 부담 없이 <span style="font-weight: 700;">당신이 가진 스마트폰의 가치를 현금으로 전환</span>해 드립니다.</p>
+                    <a href="#process" class="btn" style="background-color: var(--accent-color); color: var(--dark-color);">
+                        <i class="fas fa-cogs"></i> 제로폰 이용 방법 알아보기
+                    </a>
+                </div>
+                <div class="image-content animated-element" style="background-image: url('https://source.unsplash.com/800x600/?hands,smartphone,money'); --animation-delay: 0.4s;">
+                    <!-- 배경 이미지로 처리 (폰테크 관련 고급스러운 이미지) -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 폰테크 필요성 섹션 (누구에게 필요한가?) -->
+        <section id="need-phonetech" class="need-phonetech-section section-padding animated-section">
+            <div class="container">
+                <h2>폰테크, <span style="color: var(--accent-color);">누구에게</span> 필요할까요?</h2>
+                <p style="font-size: 1.2em; color: #eee; margin-bottom: 40px; opacity: 0; transform: translateY(20px); animation: slideInUp 0.8s ease-out forwards 0.2s;">다양한 상황에 놓인 당신에게 제로폰이 든든한 해결책이 되어 드립니다.</p>
+                <div class="feature-grid">
+                    <div class="feature-card animated-element" style="--animation-delay: 0.3s;">
+                        <i class="fas fa-sack-dollar"></i>
+                        <h3>갑작스러운 지출</h3>
+                        <p>예상치 못한 의료비, 생활비, 등록금 등 급히 목돈이 필요할 때.</p>
+                    </div>
+                    <div class="feature-card animated-element" style="--animation-delay: 0.5s;">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                        <h3>신용도 문제</h3>
+                        <p>대출이 어렵거나 신용등급 하락이 걱정될 때, 비대면으로 안전하게.</p>
+                    </div>
+                    <div class="feature-card animated-element" style="--animation-delay: 0.7s;">
+                        <i class="fas fa-piggy-bank"></i>
+                        <h3>간편한 자금 확보</h3>
+                        <p>복잡한 서류 작업 없이, 빠르고 간편하게 현금을 마련하고 싶을 때.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 이용 절차 섹션 -->
+        <section id="process" class="process-section section-padding animated-section">
+            <div class="container">
+                <h2>간편하고 빠른 <span style="color: var(--primary-color);">제로폰 이용 절차</span></h2>
+                <p style="font-size: 1.2em; color: var(--text-light-color); text-align: center; margin-bottom: 40px; opacity: 0; transform: translateY(20px); animation: slideInUp 0.8s ease-out forwards 0.2s;">최소한의 시간으로, 최대한의 만족을 드립니다. 복잡함은 저희에게 맡기세요.</p>
+                <div class="process-grid">
+                    <div class="process-step animated-element" style="--animation-delay: 0.3s;">
+                        <div class="icon-wrapper"><i class="fas fa-comment-dots"></i></div>
+                        <h4>1. 1:1 비공개 상담</h4>
+                        <p>카카오톡 또는 전화로 24시간 언제든 편하게 상담 신청해주세요. 전문 상담사가 친절하고 신속하게 응대합니다.</p>
+                    </div>
+                    <div class="process-step animated-element" style="--animation-delay: 0.5s;">
+                        <div class="icon-wrapper"><i class="fas fa-calculator"></i></div>
+                        <h4>2. 견적 및 조건 협의</h4>
+                        <p>보유하신 휴대폰의 상태와 종류에 따라 시장 최고가로 맞춤 견적과 최적의 조건을 투명하게 안내해 드립니다.</p>
+                    </div>
+                    <div class="process-step animated-element" style="--animation-delay: 0.7s;">
+                        <div class="icon-wrapper"><i class="fas fa-exchange-alt"></i></div>
+                        <h4>3. 기기 확인 및 거래</h4>
+                        <p>약속된 시간에 직접 방문하여 기기를 정확히 확인합니다. 모든 절차는 고객님 참관 하에 투명하게 진행됩니다.</p>
+                    </div>
+                    <div class="process-step animated-element" style="--animation-delay: 0.9s;">
+                        <div class="icon-wrapper"><i class="fas fa-money-bill-wave"></i></div>
+                        <h4>4. 현금 즉시 지급</h4>
+                        <p>기기 확인 후 약정된 금액을 즉시 지급해 드립니다. 기다림 없이 급한 자금을 바로 해결하세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 안전성 및 신뢰 섹션 -->
+        <section id="security" class="security-section section-padding animated-section">
+            <div class="container">
+                <h2>제로폰, <span style="color: var(--primary-color);">안전성과 신뢰</span>를 최우선으로</h2>
+                <div class="security-content">
+                    <div class="security-image animated-element" style="--animation-delay: 0.2s;">
+                        <img src="https://source.unsplash.com/800x600/?security,privacy,lock" alt="보안 이미지">
+                    </div>
+                    <div class="security-text">
+                        <h3 class="animated-element" style="--animation-delay: 0.4s;">걱정 없이 이용하세요. 제로폰은 <span style="color: var(--primary-color);">안심 서비스</span>를 제공합니다.</h3>
+                        <ul>
+                            <li style="--animation-delay: 0.6s;"><i class="fas fa-user-shield"></i> 고객님의 모든 정보는 <span style="font-weight: 700;">암호화되어 철저히 보호</span>됩니다.</li>
+                            <li style="--animation-delay: 0.8s;"><i class="fas fa-gavel"></i> 현행 법률 및 규정을 준수하는 <span style="font-weight: 700;">합법적인 서비스</span>입니다.</li>
+                            <li style="--animation-delay: 1.0s;"><i class="fas fa-magnifying-glass-chart"></i> 복잡한 신용 조회 없이 진행되어 <span style="font-weight: 700;">신용도에 어떠한 영향도 주지 않습니다.</span></li>
+                            <li style="--animation-delay: 1.2s;"><i class="fas fa-handshake-angle"></i> <span style="font-weight: 700;">투명하고 정직한 견적</span>으로 고객님의 손실을 최소화합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 매입 가능 폰 섹션 -->
+        <section id="supported-devices" class="supported-devices-section section-padding animated-section">
+            <div class="container">
+                <h2>어떤 폰이든 OK! <span style="color: var(--accent-color);">제로폰이 매입합니다.</span></h2>
+                <p style="font-size: 1.2em; color: #eee; text-align: center; margin-bottom: 40px; opacity: 0; transform: translateY(20px); animation: slideInUp 0.8s ease-out forwards 0.2s;">최신 스마트폰부터 사용하시던 폰까지, 가치를 인정해 드립니다.</p>
+                <div class="device-icons">
+                    <div class="device-item animated-element" style="--animation-delay: 0.3s;">
+                        <i class="fab fa-apple"></i>
+                        <h3>아이폰</h3>
+                    </div>
+                    <div class="device-item animated-element" style="--animation-delay: 0.5s;">
+                        <i class="fab fa-android"></i>
+                        <h3>갤럭시 & 안드로이드</h3>
+                    </div>
+                    <div class="device-item animated-element" style="--animation-delay: 0.7s;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>최신폰 & 중고폰</h3>
+                    </div>
+                    <div class="device-item animated-element" style="--animation-delay: 0.9s;">
+                        <i class="fas fa-tablet-alt"></i>
+                        <h3>태블릿 PC</h3>
+                    </div>
+                </div>
+                <div style="margin-top: 50px; opacity: 0; transform: translateY(20px); animation: slideInUp 0.8s ease-out forwards 1.1s;">
+                    <a href="#contact-footer" class="btn" style="background-color: var(--accent-color); color: var(--dark-color);">
+                        <i class="fas fa-question-circle"></i> 내 폰 견적 문의하기
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 자주 묻는 질문 FAQ 섹션 -->
+        <section id="faq" class="faq-section section-padding animated-section">
+            <div class="container">
+                <h2>자주 묻는 질문 <span style="color: var(--primary-color);">(FAQ)</span></h2>
+                <div class="accordion">
+                    <div class="accordion-item animated-element" style="--animation-delay: 0.2s;">
+                        <div class="accordion-header">
+                            <i class="fas fa-question-circle" style="margin-right: 15px;"></i> 폰테크, 합법적인 서비스인가요?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>네, 제로폰 폰테크는 현행 법률 및 규정을 철저히 준수하는 합법적인 서비스입니다. 고객님의 스마트폰을 정당하게 매입하고 현금을 제공하는 방식으로 운영되며, 일체의 불법 행위 없이 투명하고 안전하게 진행되오니 안심하고 이용하셔도 좋습니다. 불법적인 사기 행위에 대한 걱정은 내려놓으세요.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item animated-element" style="--animation-delay: 0.4s;">
+                        <div class="accordion-header">
+                            <i class="fas fa-question-circle" style="margin-right: 15px;"></i> 신용등급에 영향은 없나요?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>저희 제로폰 폰테크는 고객님의 신용도를 조회하거나 어떠한 신용 정보도 등록하지 않습니다. 이는 대출 상품이 아닌 '휴대폰 매매' 방식이기 때문에 신용등급 하락 걱정 없이 안심하고 이용하실 수 있습니다. 신용 불량자, 저신용자 분들도 자유롭게 이용 가능합니다.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item animated-element" style="--animation-delay: 0.6s;">
+                        <div class="accordion-header">
+                            <i class="fas fa-question-circle" style="margin-right: 15px;"></i> 어떤 종류의 휴대폰이 매입 가능한가요?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>최신 아이폰 시리즈, 갤럭시 시리즈 등 모든 브랜드의 최신 스마트폰부터 사용하시던 중고폰, 심지어 태블릿 PC까지 다양한 기종이 매입 대상이 됩니다. 기기의 상태, 모델, 용량 등에 따라 견적이 달라질 수 있으니, 자세한 견적은 상담을 통해 문의해주세요.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item animated-element" style="--animation-delay: 0.8s;">
+                        <div class="accordion-header">
+                            <i class="fas fa-question-circle" style="margin-right: 15px;"></i> 개인 정보는 안전하게 관리되나요?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>제로폰은 고객님의 개인 정보를 최우선으로 생각합니다. 모든 상담 내용은 철저히 1:1 비공개로 진행되며, 제공해주신 개인 정보는 암호화되어 최고 수준의 보안 시스템으로 관리됩니다. 상담 및 거래 외 어떠한 목적으로도 사용되지 않으니 안심하셔도 좋습니다.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item animated-element" style="--animation-delay: 1.0s;">
+                        <div class="accordion-header">
+                            <i class="fas fa-question-circle" style="margin-right: 15px;"></i> 정말 30분 이내에 현금 지급이 가능한가요?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>네, 제로폰은 고객님의 긴급한 자금 마련을 위해 상담부터 기기 확인, 현금 지급까지 모든 절차를 최대한 신속하게 진행합니다. 대부분의 경우 30분 이내에 현금 지급이 완료됩니다. 고객님의 소중한 시간을 절약하고, 급한 자금 문제를 빠르게 해결해 드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 고객 후기 섹션 -->
+        <section id="reviews" class="reviews-section section-padding animated-section">
+            <div class="container">
+                <h2>제로폰과 함께한 <span style="color: var(--primary-color);">고객들의 생생한 후기</span></h2>
+                <p style="font-size: 1.2em; color: var(--text-light-color); text-align: center; margin-bottom: 40px; opacity: 0; transform: translateY(20px); animation: slideInUp 0.8s ease-out forwards 0.2s;">만족스러운 서비스로 보답하겠습니다.</p>
+                <div class="reviews-grid">
+                    <div class="review-card animated-element" style="--animation-delay: 0.3s;">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"급한 돈이 필요했는데, 신용 조회도 없고 빠르고 친절하게 처리해주셔서 정말 큰 도움 받았습니다. 완전 만족해요!"</p>
+                        <div class="reviewer-info">김*정 고객님 <span>(아이폰 15 Pro Max 매입)</span></div>
+                    </div>
+                    <div class="review-card animated-element" style="--animation-delay: 0.5s;">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"타 업체보다 훨씬 좋은 가격에 폰을 매입해주셨고, 개인 정보 걱정 없이 안심하고 진행할 수 있었습니다. 강력 추천합니다!"</p>
+                        <div class="reviewer-info">박*준 고객님 <span>(갤럭시 S24 Ultra 매입)</span></div>
+                    </div>
+                    <div class="review-card animated-element" style="--animation-delay: 0.7s;">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"상담이 너무 친절하고 자세해서 좋았어요. 비대면으로 이렇게 빠르고 깔끔하게 처리해주시다니 믿음이 갑니다."</p>
+                        <div class="reviewer-info">이*영 고객님 <span>(아이폰 14 Pro 매입)</span></div>
+                    </div>
+                    <div class="review-card animated-element" style="--animation-delay: 0.9s;">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"혹시나 했는데 정말 빠르게 현금을 받을 수 있어서 놀랐습니다. 급전 필요할 때 망설이지 말고 제로폰으로 오세요!"</p>
+                        <div class="reviewer-info">최*수 고객님 <span>(갤럭시 Z 플립 5 매입)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact-footer" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>제로폰 폰테크</h4>
+                    <p>급한 자금, 스마트폰으로 빠르고 안전하게 해결하세요.<br>고객님의 현금 유동성을 최우선으로 생각하며, 신뢰와 만족을 드립니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>문의 및 상담</h4>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> 전화: <a href="tel:0000-0000">0000-0000</a></li>
+                        <li><i class="fab fa-rocketchat"></i> 카카오톡 ID: <a href="https://pf.kakao.com/_xgwWxj/chat" target="_blank">@zerophone</a></li>
+                        <li><i class="fas fa-envelope"></i> 이메일: <a href="mailto:info@zerophone.co.kr">info@zerophone.co.kr</a></li>
+                        <li><i class="fas fa-clock"></i> 상담 시간: 24시간 연중무휴</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>주요 메뉴</h4>
+                    <ul>
+                        <li><i class="fas fa-info-circle"></i> <a href="#intro">제로폰 소개</a></li>
+                        <li><i class="fas fa-sync-alt"></i> <a href="#process">이용 절차</a></li>
+                        <li><i class="fas fa-shield-alt"></i> <a href="#security">안전 및 신뢰</a></li>
+                        <li><i class="fas fa-question"></i> <a href="#faq">자주 묻는 질문</a></li>
+                        <li><i class="fas fa-comments"></i> <a href="#reviews">고객 후기</a></li>
+                        <li><i class="fas fa-comment"></i> <a href="#contact">빠른 상담</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>소셜 미디어</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copywrite">
+                &copy; 2025 제로폰 폰테크. All rights reserved. | <a href="#" style="color:#aaaaaa;">개인정보처리방침</a> | <a href="#" style="color:#aaaaaa;">이용약관</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 햄버거 메뉴 토글
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // 네비게이션 메뉴 클릭 시 스크롤 이동 및 메뉴 닫기
+        document.querySelectorAll('.nav-item a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault(); // 기본 링크 동작 방지
+                const targetId = item.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80, // 헤더 높이만큼 빼서 정확한 위치로 스크롤 (약간의 여유 추가)
+                        behavior: 'smooth'
+                    });
+                }
+                // 모바일 메뉴가 열려있으면 닫기
+                if (navMenu.classList.contains('active')) {
+                    hamburgerMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // FAQ 아코디언 기능
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionContent = header.nextElementSibling;
+                const icon = header.querySelector('.icon');
+
+                // 현재 활성화된 다른 아코디언이 있다면 닫기
+                document.querySelectorAll('.accordion-content.active').forEach(content => {
+                    if (content !== accordionContent) {
+                        content.classList.remove('active');
+                        content.previousElementSibling.classList.remove('active');
+                        content.previousElementSibling.querySelector('.icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // 클릭된 아코디언 토글
+                accordionContent.classList.toggle('active');
+                header.classList.toggle('active');
+                icon.style.transform = accordionContent.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+
+        // 스크롤 시 섹션 및 요소 애니메이션 (Intersection Observer 활용)
+        const observerOptions = {
+            root: null, // 뷰포트를 기준으로
+            rootMargin: '0px',
+            threshold: 0.3 // 요소가 30% 보일 때 콜백 실행
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // 애니메이션은 한 번만 실행되도록, 보이면 바로 관찰 중지
+                    // observer.unobserve(entry.target);
+                } else {
+                    // 애니메이션 반복 원치 않으면 이 부분 제거 (다시 숨겨지지 않도록)
+                    // entry.target.classList.remove('is-visible');
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // animated-section 클래스가 붙은 모든 섹션 관찰
+        document.querySelectorAll('.animated-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // animated-element 클래스가 붙은 모든 개별 요소 관찰 (섹션 내 세부 요소들)
+        // 섹션 내 요소들은 부모 섹션이 is-visible 된 후 순차적으로 나타나도록 CSS transition-delay와 함께 활용
+        document.querySelectorAll('.animated-element').forEach(element => {
+            observer.observe(element);
+        });
+
+
+        // 카카오 상담 신청 폼 제출 시 (실제 연동은 백엔드 필요)
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // 폼 기본 제출 동작 방지
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            if (name && phone) {
+                // 실제 제로폰의 카카오톡 채널 채팅 링크를 여기에 입력합니다.
+                // 이 예시 URL은 테스트용이므로 실제 운영 링크로 꼭 변경해주세요!
+                const kakaoChannelUrl = 'https://pf.kakao.com/_xgwWxj/chat'; // <-- 이곳을 실제 카카오 채널 URL로 변경하세요!
+                alert(`${name}님 (${phone}) 상담 신청이 접수되었습니다! 제로폰 카카오톡 채널로 이동합니다.`);
+                window.open(kakaoChannelUrl, '_blank'); // 새 탭으로 카카오톡 채널 열기
+
+                // 실제 서비스에서는 여기에 서버로 데이터를 전송하는 로직이 들어갑니다.
+                // fetch('/api/submit-consultation', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ name, phone })
+                // }).then(response => response.json())
+                // .then(data => {
+                //     alert('상담 신청이 완료되었습니다! 카카오톡 채널로 이동합니다.');
+                //     window.open(kakaoChannelUrl, '_blank');
+                // })
+                // .catch(error => {
+                //     console.error('Error submitting form:', error);
+                //     alert('상담 신청 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                // });
+
+                contactForm.reset(); // 폼 초기화
+            } else {
+                alert('이름과 연락처를 모두 입력해주세요.');
+            }
+        });
+    </script>
+</body>
+</html>
