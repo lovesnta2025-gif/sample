@@ -13,6 +13,10 @@
       --accent:#06b6d4; --accent-2:#7c3aed; --muted:#9aa4b2; --maxw:1200px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
+
+.hero-copy.aos-init.aos-animate {
+    transform: none!important;
+}
     html,body{height:100%}
     body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#071029 0%,#071725 60%); color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
     a{color:inherit;text-decoration:none}
@@ -20,18 +24,21 @@
 
     /* Header */
     header{position:fixed;left:0;right:0;top:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:1100;background:linear-gradient(180deg, rgba(11,16,24,0.6), rgba(11,16,24,0.2));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#061021}
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);font-weight:600;padding:8px 12px;border-radius:8px;transition:color .18s,background .18s}
+    .logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#061021;flex-shrink:0}
+    .logo > div:last-child{font-size:clamp(12px, 2vw, 16px)}
+    .mobile-menu-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,0.1);color:#e6eef6;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:20px}
+    nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    nav a{color:var(--muted);font-weight:600;padding:8px 12px;border-radius:8px;transition:color .18s,background .18s;white-space:nowrap;font-size:clamp(13px, 1.5vw, 15px)}
     nav a.active, nav a:hover{color:#e6f7fb;background:rgba(255,255,255,0.03)}
+    nav.mobile-open{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(11,18,32,0.98);backdrop-filter:blur(10px);padding:20px;gap:12px;border-top:1px solid rgba(255,255,255,0.02)}
 
     /* Hero */
-    .hero{height:100vh;padding-top:72px;display:grid;place-items:center}
+    .hero{min-height:100vh;height:auto;padding-top:72px;display:grid;place-items:center;padding-bottom:40px}
     .hero-inner{width:100%;max-width:var(--maxw);padding:48px;display:grid;grid-template-columns:1fr 440px;gap:40px;align-items:center}
 
-    .hero-copy h1{font-size:46px;line-height:1.02;margin-bottom:14px;font-weight:800}
-    .hero-copy p{color:var(--muted);font-size:16px;margin-bottom:28px}
+    .hero-copy h1{font-size:clamp(28px, 5vw, 46px);line-height:1.2;margin-bottom:14px;font-weight:800;word-break:keep-all}
+    .hero-copy p{color:var(--muted);font-size:clamp(14px, 2vw, 16px);margin-bottom:28px;line-height:1.6}
 
     /* Glass card form */
     .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:22px;border-radius:14px;backdrop-filter:blur(8px)}
@@ -39,18 +46,20 @@
     .price-big{font-size:22px;font-weight:700;margin-bottom:6px}
     .small-note{font-size:13px;color:var(--muted)}
 
-    form .row{display:flex;gap:10px;margin-bottom:10px}
-    input[type=text], input[type=tel], select{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;outline:none}
-    button[type=submit]{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041021;font-weight:700;cursor:pointer}
+    form .row{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+    input[type=text], input[type=tel], select{flex:1;min-width:120px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;outline:none;font-size:clamp(14px, 2vw, 16px)}
+    button[type=submit]{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041021;font-weight:700;cursor:pointer;font-size:clamp(14px, 2vw, 16px);white-space:nowrap}
+    form .row:last-child{flex-direction:column}
+    form .row:last-child select, form .row:last-child button{width:100%}
 
-    .hero-media{position:relative}
+    .hero-media{position:relative;transform: none!important;);}
     .device-mock{border-radius:20px;overflow:hidden;box-shadow:0 30px 60px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.03)}
 
     /* Sections */
     section{padding:80px 20px}
-    .container{max-width:var(--maxw);margin:0 auto}
-    .section-title{font-size:28px;font-weight:700;margin-bottom:18px}
-    .section-sub{color:var(--muted);margin-bottom:28px}
+    .container{max-width:var(--maxw);margin:0 auto;width:100%;padding:0 20px}
+    .section-title{font-size:clamp(22px, 4vw, 28px);font-weight:700;margin-bottom:18px;word-break:keep-all}
+    .section-sub{color:var(--muted);margin-bottom:28px;font-size:clamp(14px, 2vw, 16px);line-height:1.6}
 
     /* Features grid */
     .grid{display:grid;gap:18px}
@@ -62,9 +71,9 @@
 
     /* Price / flow */
     .flow{display:flex;gap:18px;flex-wrap:wrap}
-    .step{flex:1;min-width:220px;background:linear-gradient(180deg,rgba(124,58,237,0.08),rgba(6,182,212,0.02));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-    .step h5{font-weight:800;color:#fff;margin-bottom:6px}
-    .step p{color:var(--muted);font-size:14px}
+    .step{flex:1;min-width:200px;max-width:100%;background:linear-gradient(180deg,rgba(124,58,237,0.08),rgba(6,182,212,0.02));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .step h5{font-weight:800;color:#fff;margin-bottom:6px;font-size:clamp(16px, 2.5vw, 18px)}
+    .step p{color:var(--muted);font-size:clamp(13px, 1.8vw, 14px);line-height:1.5}
 
     /* Reviews carousel (simple) */
     .reviews{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
@@ -78,24 +87,62 @@
     .faq-item{background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
 
     /* CTA footer */
-    .cta{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:28px;border-radius:16px;background:linear-gradient(90deg,rgba(12,18,29,0.6),rgba(7,10,18,0.5));border:1px solid rgba(255,255,255,0.03)}
-    .cta h3{font-size:20px;margin-bottom:6px}
-    .cta p{color:var(--muted)}
+    .cta{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:28px;border-radius:16px;background:linear-gradient(90deg,rgba(12,18,29,0.6),rgba(7,10,18,0.5));border:1px solid rgba(255,255,255,0.03);flex-wrap:wrap}
+    .cta > div{flex:1;min-width:200px}
+    .cta h3{font-size:clamp(18px, 3vw, 20px);margin-bottom:6px;word-break:keep-all}
+    .cta p{color:var(--muted);font-size:clamp(13px, 1.8vw, 15px)}
+    .cta form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;width:100%;min-width:280px}
+    .cta form input{flex:1;min-width:100px}
+    .cta form button{flex-shrink:0}
 
     footer{padding:36px 20px;text-align:center;color:var(--muted)}
+    footer .container > div{flex-direction:column;text-align:center;gap:8px}
+    footer .container > div > div{font-size:clamp(12px, 1.8vw, 14px);line-height:1.6}
 
     /* Responsive */
     @media (max-width:1000px){
-      .hero-inner{grid-template-columns:1fr 380px;padding:28px 18px}
+      .hero-inner{grid-template-columns:1fr 380px;padding:28px 18px;gap:30px}
       .grid.cols-3{grid-template-columns:repeat(2,1fr)}
       .reviews{grid-template-columns:1fr}
+      nav{gap:12px}
+      nav a{padding:6px 10px;font-size:14px}
+      .hero-copy h1{font-size:clamp(24px, 4vw, 36px)}
     }
-    @media (max-width:720px){
-      .hero-inner{grid-template-columns:1fr;padding:20px;gap:18px}
-      nav{display:none}
+    @media (max-width:768px){
+      .hero-inner{grid-template-columns:1fr;padding:24px 16px;gap:24px}
       .grid.cols-3{grid-template-columns:1fr}
       .faq{grid-template-columns:1fr}
-      header{padding:0 14px}
+      header{padding:0 16px}
+      .mobile-menu-btn{display:block}
+      nav{display:none}
+      nav.mobile-open{display:flex}
+      .hero-media .device-mock img{width:100%;height:auto}
+      .step{min-width:100%}
+      .cta form{flex-direction:column}
+      .cta form input, .cta form button{width:100%}
+      section{padding:60px 16px}
+      .container{padding:0 16px}
+      .reviews-list{margin-bottom:20px}
+      footer .container > div > div{word-break:keep-all}
+    }
+    @media (max-width:480px){
+      header{padding:0 12px;height:64px}
+      .logo .mark{width:38px;height:38px;font-size:14px}
+      .logo > div:last-child{font-size:12px}
+      .hero{padding-top:64px;min-height:calc(100vh - 64px)}
+      .hero-inner{padding:20px 12px}
+      .hero-copy h1{font-size:24px;line-height:1.3}
+      .hero-copy p{font-size:14px;margin-bottom:20px}
+      section{padding:50px 12px}
+      .container{padding:0 12px}
+      .card{padding:18px}
+      .feature-card{padding:18px;gap:12px}
+      .feature-icon{width:48px;height:48px;font-size:20px}
+      nav.mobile-open{top:64px;padding:16px}
+      .flow{gap:12px}
+      .step{padding:16px}
+      footer{padding:28px 12px}
+      .btn-ghost, .btn-primary{font-size:13px;padding:8px 14px}
     }
 
     /* subtle animations */
@@ -111,7 +158,8 @@
         <div style="font-size:12px;color:var(--muted);margin-top:2px">Smart Device Asset</div>
       </div>
     </div>
-    <nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴">☰</button>
+    <nav id="mainNav">
       <a href="#home" class="active">홈</a>
       <a href="#service">서비스</a>
       <a href="#flow">진행절차</a>
@@ -130,8 +178,8 @@
           <p>기기 매입·할부정리·당일지급·비대면 상담까지. 정식 등록·안전한 절차로 진행합니다.</p>
 
           <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
-            <a class="btn-ghost" href="#service" style="padding:10px 16px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#e6f7fb;font-weight:700">서비스 보기</a>
-            <a class="btn-primary" href="#contact" style="padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041021;font-weight:700">지금 상담신청</a>
+            <a class="btn-ghost" href="#service" style="padding:10px 16px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#e6f7fb;font-weight:700;font-size:clamp(13px, 2vw, 15px);white-space:nowrap">서비스 보기</a>
+            <a class="btn-primary" href="#contact" style="padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041021;font-weight:700;font-size:clamp(13px, 2vw, 15px);white-space:nowrap">지금 상담신청</a>
           </div>
 
           <div style="margin-top:22px;color:var(--muted);font-size:13px">공식 등록업체 · 개인정보 암호화 · 방문/비대면 모두 지원</div>
@@ -275,8 +323,8 @@
               <div style="font-size:13px;color:var(--muted)">실시간 상담</div>
               <div style="font-weight:800;font-size:18px;margin:8px 0">빠른 상담이 필요하신가요?</div>
               <form id="lead-form-2">
-                <div style="display:flex;gap:8px;margin-bottom:8px"><input type="text" name="name2" placeholder="이름" required /><input type="tel" name="phone2" placeholder="연락처" required /></div>
-                <button type="submit">상담 신청</button>
+                <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap"><input type="text" name="name2" placeholder="이름" required style="flex:1;min-width:100px" /><input type="tel" name="phone2" placeholder="연락처" required style="flex:1;min-width:100px" /></div>
+                <button type="submit" style="width:100%">상담 신청</button>
                 <div style="font-size:12px;color:var(--muted);margin-top:8px">24시간 내에 상담원이 연락 드립니다.</div>
               </form>
             </div>
@@ -306,10 +354,10 @@
             <h3>지금 상담 신청하세요</h3>
             <p>빠른 접수. 안전한 절차. 당일 지급 옵션 제공.</p>
           </div>
-          <form id="contact-form" style="display:flex;gap:8px;align-items:center">
-            <input type="text" name="name3" placeholder="이름" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
-            <input type="tel" name="phone3" placeholder="연락처" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
-            <button type="submit" style="padding:10px 14px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));font-weight:800;color:#041021">상담신청</button>
+          <form id="contact-form" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <input type="text" name="name3" placeholder="이름" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;flex:1;min-width:100px;font-size:clamp(14px, 2vw, 16px)" />
+            <input type="tel" name="phone3" placeholder="연락처" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;flex:1;min-width:100px;font-size:clamp(14px, 2vw, 16px)" />
+            <button type="submit" style="padding:10px 14px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));font-weight:800;color:#041021;white-space:nowrap;font-size:clamp(14px, 2vw, 16px)">상담신청</button>
           </form>
         </div>
       </div>
@@ -402,8 +450,28 @@
         if(!el) return;
         const top = el.getBoundingClientRect().top + window.scrollY - 72;
         window.scrollTo({top,behavior:'smooth'});
+        // 모바일 메뉴 닫기
+        const nav = document.getElementById('mainNav');
+        if(nav && nav.classList.contains('mobile-open')){
+          nav.classList.remove('mobile-open');
+        }
       })
     })
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    if(mobileMenuBtn && mainNav){
+      mobileMenuBtn.addEventListener('click', ()=>{
+        mainNav.classList.toggle('mobile-open');
+      });
+      // 외부 클릭시 메뉴 닫기
+      document.addEventListener('click', (e)=>{
+        if(!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)){
+          mainNav.classList.remove('mobile-open');
+        }
+      });
+    }
   </script>
 </body>
 </html>
